@@ -2,7 +2,8 @@ export interface TeamProps {
   id?: string;
   twitchUserId: string;
   twitchUsername: string;
-  twitchProfileUrl?: string;
+  twitchDisplayName: string;
+  twitchProfileImageUrl?: string;
   offlineImageUrl?: string;
 }
 

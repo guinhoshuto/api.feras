@@ -19,7 +19,8 @@ export class TeamService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createTeamDto: CreateTeamDto): Promise<void> {
-    this.prisma.team.create({
+    console.log(createTeamDto);
+    await this.prisma.team.create({
       data: createTeamDto,
     });
   }

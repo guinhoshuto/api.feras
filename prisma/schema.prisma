@@ -11,11 +11,12 @@ datasource db {
 }
 
 model Team {
-  id                   String @unique @default(uuid()) @db.Uuid
-  twitchUserId         String
-  twitchUsername       String
-  twichProfileImageUrl String
-  offlineImageUrl      String
+  id                    String @unique @default(uuid()) @db.Uuid
+  twitchUserId          String
+  twitchUsername        String
+  twitchDisplayName     String
+  twitchProfileImageUrl String
+  offlineImageUrl       String
 
   @@index(twitchUserId)
 }
