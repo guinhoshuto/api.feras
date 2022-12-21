@@ -12,7 +12,7 @@ datasource db {
 
 model Team {
   id                    String @unique @default(uuid()) @db.Uuid
-  twitchUserId          String
+  twitchUserId          String @unique
   twitchUsername        String
   twitchDisplayName     String
   twitchProfileImageUrl String

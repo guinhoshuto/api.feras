@@ -31,6 +31,11 @@ export class TeamController {
     return await this.teamService.searchTwitchUserByUsername(username);
   }
 
+  @Get('/live')
+  getTeam() {
+    return this.teamService.getTeam();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.teamService.findOne(+id);
@@ -43,6 +48,6 @@ export class TeamController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.teamService.remove(+id);
+    return this.teamService.remove(id);
   }
 }

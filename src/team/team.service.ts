@@ -4,6 +4,7 @@ import { UpdateTeamDto } from './dto/update-team.dto';
 import { PrismaService } from 'src/prisma.service';
 import axios from 'axios';
 import { TwitchUser } from './entities/twitchUser.entity';
+import { mergeFerasWithStreamData } from 'src/helpers/merge-feras-with-stream-data';
 
 export const url_users = 'https://api.twitch.tv/helix/users?login=';
 export const stream_url = 'https://api.twitch.tv/helix/streams?user_login=';
@@ -39,11 +40,26 @@ export class TeamService {
     return user.data.data[0];
   }
 
+  async getTeam() {
+    const feras = await this.findAll();
+    const ferasUsernames = feras.map((f: any) => f.twitchUsername);
+    const streamData = await axios.get(
+      stream_url + ferasUsernames.join('&login='),
+      headers,
+    );
+
+    return mergeFerasWithStreamData(feras, streamData.data.data);
+  }
+
   update(id: number, updateTeamDto: UpdateTeamDto) {
     return `This action updates a #${id} team`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} team`;
+  remove(id: string) {
+    return this.prisma.team.delete({
+      where: {
+        twitchUserId: id,
+      },
+    });
   }
 }
