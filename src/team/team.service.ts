@@ -44,10 +44,10 @@ export class TeamService {
     const feras = await this.findAll();
     const ferasUsernames = feras.map((f: any) => f.twitchUsername);
     const streamData = await axios.get(
-      stream_url + ferasUsernames.join('&login='),
+      stream_url + ferasUsernames.join('&user_login='),
       headers,
     );
-    console.log('oi', mergeFerasWithStreamData(feras, streamData.data.data));
+    // console.log('oi', mergeFerasWithStreamData(feras, streamData.data.data));
     return mergeFerasWithStreamData(feras, streamData.data.data);
   }
 

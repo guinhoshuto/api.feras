@@ -2,10 +2,11 @@ export const mergeFerasWithStreamData = (twitchUsers, streamData) => {
   console.log(streamData);
   const team = [];
   twitchUsers.forEach((user: any) => {
-    console.log(user);
+    // console.log(user);
     const feraOnline = streamData.find(
       (stream: any) => stream.user_login === user.twitchUsername,
     );
+    // console.log(feraOnline);
     if (typeof feraOnline === undefined) return;
     const ferasStats = {
       is_live: feraOnline ? true : false,
