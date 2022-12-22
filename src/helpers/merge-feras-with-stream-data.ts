@@ -2,6 +2,7 @@ export const mergeFerasWithStreamData = (twitchUsers, streamData) => {
   console.log(streamData);
   const team = [];
   twitchUsers.forEach((user: any) => {
+    console.log(user);
     const feraOnline = streamData.find(
       (stream: any) => stream.user_login === user.twitchUsername,
     );
@@ -16,13 +17,12 @@ export const mergeFerasWithStreamData = (twitchUsers, streamData) => {
       language: feraOnline ? feraOnline.language : '',
       thumbnail_url: feraOnline ? feraOnline.thumbnail_url : '',
       user_id: feraOnline ? feraOnline.user_id : '',
-      profile_image_url: user.profile_image_url,
-      offline_image_url: user.offline_image_url,
-      view_count: user.view_count,
+      view_count: feraOnline ? feraOnline.view_count : '',
     };
 
     team.push({
       fera: user.twitchUsername,
+      profile_image_url: user.twitchProfileImageUrl,
       ...ferasStats,
     });
   });

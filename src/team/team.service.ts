@@ -47,7 +47,7 @@ export class TeamService {
       stream_url + ferasUsernames.join('&login='),
       headers,
     );
-
+    console.log('oi', mergeFerasWithStreamData(feras, streamData.data.data));
     return mergeFerasWithStreamData(feras, streamData.data.data);
   }
 
