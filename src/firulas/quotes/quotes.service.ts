@@ -31,4 +31,14 @@ export class QuotesService {
   findAll() {
     return this.prisma.quotes.findMany();
   }
+
+  search(query: string) {
+    return this.prisma.quotes.findMany({
+      where: {
+        quote: {
+          contains: query,
+        },
+      },
+    });
+  }
 }

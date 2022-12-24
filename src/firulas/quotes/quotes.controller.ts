@@ -19,4 +19,9 @@ export class QuotesController {
   findOne(@Param('quoteNumber') quoteNumber: string) {
     return this.quotesService.findByNumber(parseInt(quoteNumber));
   }
+
+  @Get('/search/:query')
+  search(@Param('query') query: string) {
+    return this.quotesService.search(query);
+  }
 }
