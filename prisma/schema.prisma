@@ -13,7 +13,7 @@ datasource db {
 model Team {
   id                    String @unique @default(uuid()) @db.Uuid
   twitchUserId          String @unique
-  twitchUsername        String
+  twitchUsername        String @db.VarChar(255)
   twitchDisplayName     String
   twitchProfileImageUrl String
   offlineImageUrl       String
@@ -22,10 +22,11 @@ model Team {
 }
 
 model Quotes {
-  id          String @id @default(uuid())
-  quoteNumber Int    @unique
+  id          String  @id @default(uuid())
+  quoteNumber Int     @unique
   quote       String
   channel     String
+  lore        String?
   channelId   String
 
   @@index(quoteNumber)

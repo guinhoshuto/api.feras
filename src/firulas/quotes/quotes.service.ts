@@ -6,6 +6,7 @@ export class QuoteDto {
   id?: string;
   quoteNumber: number;
   quote: string;
+  lore: string | null;
   channel: string;
   channelId: string;
 }
